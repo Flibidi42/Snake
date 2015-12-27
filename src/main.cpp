@@ -14,8 +14,7 @@ int main()
     {
         sf::Event event;
         if(horloge.getElapsedTime().asMilliseconds() >= 300){
-        	s.moove();
-        	s.affichage(&window);
+        	game.iteration();
         	horloge.restart();
         }
         while (window.pollEvent(event))

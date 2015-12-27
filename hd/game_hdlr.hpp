@@ -1,4 +1,4 @@
-#include "..hd/snake.hpp"
+#include "../hd/snake.hpp"
 
 
 class Game_hdlr{

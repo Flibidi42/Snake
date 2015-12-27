@@ -13,7 +13,6 @@ Snake::Snake(int x, int y){
 	rec2.setFillColor(sf::Color(100, 250, 50));
 	file.push_back(rec);
 	file.push_back(rec2);
-	ajout = false;
 }
 
 void Snake::affichage(sf::RenderWindow* w){

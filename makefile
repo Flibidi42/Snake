@@ -1,21 +1,24 @@
-CXXFLAGS = -Wall -g
+CXXFLAGS = -Wall -g -std=c++11
 FLAG_SFML = -lsfml-graphics -lsfml-window -lsfml-system
 DIR_SRC = src
 DIR_HD = hd
 DIR_OBJ = obj
-OBJ= $(DIR_OBJ)/main.o
+CONST = $(DIR_HD)/constantes.hpp
+OBJ= $(DIR_OBJ)/main.o $(DIR_OBJ)/snake.o
 
 Snake: $(OBJ)
 	g++ $^ -o $@ $(CXXFLAGS) $(FLAG_SFML)
+	rm -f $(DIR_HD)/*~
+	rm -f $(DIR_SRC)/*~
 
-$(DIR_OBJ)/main.o: $(DIR_SRC)/main.cpp
+$(DIR_OBJ)/main.o: $(DIR_SRC)/main.cpp $(CONST)
 	g++ -o $@ -c $< $(CXXFLAGS)
 
-$(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp $(DIR_HD)/%.h
+$(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp $(DIR_HD)/%.hpp $(CONST)
 	g++ -o $@ -c $< $(CXXFLAGS)
 
 clean:
-	rm -rf obj/*.o *~
+	rm -f $(DIR_OBJ)/*.o $(DIR_HD)/*~ $(DIR_SRC)/*~
 
 CLEAN:
-	rm -rf obj/*.o *~ Snake
+	rm -f $(DIR_OBJ)/*.o $(DIR_HD)/*~ $(DIR_SRC)/*~ Snake

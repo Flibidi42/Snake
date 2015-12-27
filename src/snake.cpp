@@ -14,7 +14,6 @@ Snake::Snake(int x, int y){
 	file.push_back(rec);
 	file.push_back(rec2);
 	ajout = false;
-	dir_courante = RIGHT;
 }
 
 void Snake::affichage(sf::RenderWindow* w){
@@ -24,10 +23,10 @@ void Snake::affichage(sf::RenderWindow* w){
 		w->draw(*it);
 }
 
-bool Snake::moove(){
+bool Snake::moove(Dir direction, bool ajout = false){
 	//On retient la position qu'aura le nouveau
 	int posx, posy;
-	switch(dir_courante){
+	switch(direction){
 		case RIGHT:
 			posy = file[file.size()-1].getPosition().y;
 			posx = file[file.size()-1].getPosition().x + PART_SZ;

@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "../hd/snake.hpp"
+#include "../hd/game_hdlr.hpp"
 #include "../hd/constantes.hpp"
 
 int main()
@@ -8,6 +8,8 @@ int main()
     Snake s(50, 50);
     s.affichage(&window);
     sf::Clock horloge;
+    Game_hdlr game(&s, &window);
+    
     while (window.isOpen())
     {
         sf::Event event;

@@ -11,7 +11,7 @@ Snake: $(OBJ)
 	rm -f $(DIR_HD)/*~
 	rm -f $(DIR_SRC)/*~
 
-$(DIR_OBJ)/main.o: $(DIR_SRC)/main.cpp $(CONST)
+$(DIR_OBJ)/main.o: $(DIR_SRC)/main.cpp $(CONST) $(DIR_HD)/snake.hpp
 	g++ -o $@ -c $< $(CXXFLAGS)
 
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp $(DIR_HD)/%.hpp $(CONST)

@@ -30,10 +30,22 @@ bool Snake::moove(Dir direction, bool ajout = false){
 			posy = file[file.size()-1].getPosition().y;
 			posx = file[file.size()-1].getPosition().x + PART_SZ;
 		break;
+		case LEFT:
+			posy = file[file.size()-1].getPosition().y;
+			posx = file[file.size()-1].getPosition().x - PART_SZ;
+		break;
+		case UP:
+			posy = file[file.size()-1].getPosition().y - PART_SZ;
+			posx = file[file.size()-1].getPosition().x;
+		break;
+		case DOWN:
+			posy = file[file.size()-1].getPosition().y + PART_SZ;
+			posx = file[file.size()-1].getPosition().x;
+		break;
 	}
 	
 	//On teste s'il sort de l'écran
-	if(posx >= WIND_SZ || posy >= WIND_SZ)
+	if(posx >= WIND_SZ || posy >= WIND_SZ || posx < 0 || posy < 0)
 		return false;
 		
 	//Le premier devient le dernier

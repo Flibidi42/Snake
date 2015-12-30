@@ -15,3 +15,25 @@ void Game_hdlr::iteration(){
 	else
 		m_s->affichage(m_w);
 }
+
+void Game_hdlr::chgt_dir(Dir direction){
+
+	switch(dir_courante){
+		case RIGHT:
+			if(direction != LEFT)
+				dir_courante = direction;
+			break;
+		case LEFT:
+			if(direction != RIGHT)
+				dir_courante = direction;
+			break;
+		case UP:
+			if(direction != DOWN)
+				dir_courante = direction;
+			break;
+		case DOWN:
+			if(direction != UP)
+				dir_courante = direction;
+			break;
+	}
+}

@@ -1,4 +1,4 @@
-CXXFLAGS = -Wall -g -std=c++11
+CXXFLAGS = -g -std=c++11
 FLAG_SFML = -lsfml-graphics -lsfml-window -lsfml-system
 DIR_SRC = src
 DIR_HD = hd

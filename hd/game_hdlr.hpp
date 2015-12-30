@@ -12,5 +12,6 @@ class Game_hdlr{
 	
 	Game_hdlr(Snake* s, sf::RenderWindow *w);
 	void iteration();
+	void chgt_dir(Dir direction);
 
 };

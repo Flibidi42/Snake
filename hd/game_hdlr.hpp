@@ -1,4 +1,7 @@
 #include "../hd/snake.hpp"
+#include <cstdlib>
+#include <ctime>
+
 
 class Game_hdlr{
 
@@ -6,12 +9,16 @@ class Game_hdlr{
 	sf::RenderWindow *m_w;
 	Dir dir_courante;
 	Dir dir_suivante;
-	bool ajout;
+	sf::RectangleShape food;
 	
 	public:
 	
 	Game_hdlr(Snake* s, sf::RenderWindow *w);
 	bool iteration();
 	void chgt_dir(Dir direction);
+	void affichage();
+	
+	private:
+	void generer_food();
 
 };

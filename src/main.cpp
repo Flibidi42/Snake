@@ -4,8 +4,10 @@
 
 int main()
 {
+    srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(WIND_SZ, WIND_SZ), "Snake");
     Snake s(50, 50);
+    bool go = false;
     s.affichage(&window);
     sf::Clock horloge;
     Game_hdlr game(&s, &window);
@@ -28,10 +30,11 @@ int main()
          			game.chgt_dir(DOWN);
          		if(event.key.code == sf::Keyboard::Right)
          			game.chgt_dir(RIGHT);
+         		go = true;
          		break;
             }
         }
-        if(horloge.getElapsedTime().asMilliseconds() >= 300){
+        if(horloge.getElapsedTime().asMilliseconds() >= 300 && go){
         	if(!game.iteration())
         		window.close();
         	horloge.restart();

@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <deque>
 
+enum Retour {OK, FIN, FOOD};
 enum Dir {LEFT, RIGHT, UP, DOWN};
 
 class Snake{
@@ -11,5 +12,6 @@ public:
 	
 	Snake(int x, int y);
 	void affichage(sf::RenderWindow* w);
-	bool moove(Dir direction, bool ajout);
+	Retour moove(Dir direction, int fd_x, int fd_y);
+	bool check_food(int x, int y);
 };

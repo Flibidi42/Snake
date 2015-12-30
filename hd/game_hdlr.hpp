@@ -9,11 +9,12 @@ class Game_hdlr{
 	sf::RenderWindow *m_w;
 	Dir dir_courante;
 	Dir dir_suivante;
-	sf::RectangleShape food;
+	sf::RectangleShape *food;
 	
 	public:
 	
 	Game_hdlr(Snake* s, sf::RenderWindow *w);
+	~Game_hdlr();
 	bool iteration();
 	void chgt_dir(Dir direction);
 	void affichage();

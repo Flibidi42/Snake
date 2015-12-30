@@ -5,16 +5,21 @@
 Game_hdlr::Game_hdlr(Snake *s, sf::RenderWindow* w){
 	m_s = s;
 	m_w = w;
-	s->affichage(w);
 	dir_courante = RIGHT;
 	dir_suivante = RIGHT;
+	food = new sf::RectangleShape(sf::Vector2f(PART_SZ, PART_SZ));
 	generer_food();
-	food.setFillColor(sf::Color::Red);
+	food->setFillColor(sf::Color::Red);
+	affichage();
+}
+
+Game_hdlr::~Game_hdlr(){
+	delete food;
 }
 
 bool Game_hdlr::iteration(){
 	dir_courante = dir_suivante;
-	Retour val = m_s->moove(dir_courante, food.getPosition().x, food.getPosition().y);
+	Retour val = m_s->moove(dir_courante, food->getPosition().x, food->getPosition().y);
 	if(val == FIN){
 		std::cout << "Fin du jeu!" << std::endl;
 		return false;
@@ -30,7 +35,7 @@ bool Game_hdlr::iteration(){
 
 void Game_hdlr::affichage(){
 	m_w->clear(sf::Color::Black);
-	m_w->draw(food);
+	m_w->draw(*food);
 	m_s->affichage(m_w);
 }
 
@@ -40,7 +45,7 @@ void Game_hdlr::generer_food(){
 		x = (rand()%(WIND_SZ/PART_SZ))*PART_SZ;
 		y = (rand()%(WIND_SZ/PART_SZ))*PART_SZ;
 	}while(!m_s->check_food(x,y));
-	food.setPosition(x,y);
+	food->setPosition(x,y);
 	std::cout << x << "/" << y << std::endl;
 }
 

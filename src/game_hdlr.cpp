@@ -12,4 +12,6 @@ Game_hdlr::Game_hdlr(Snake *s, sf::RenderWindow* w){
 void Game_hdlr::iteration(){
 	if(!(m_s->moove(dir_courante, ajout)))
 		std::cout << "Fin du jeu!" << std::endl;
+	else
+		m_s->affichage(m_w);
 }

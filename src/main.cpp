@@ -13,14 +13,14 @@ int main()
     while (window.isOpen())
     {
         sf::Event event;
-        if(horloge.getElapsedTime().asMilliseconds() >= 300){
-        	game.iteration();
-        	horloge.restart();
-        }
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+        }
+        if(horloge.getElapsedTime().asMilliseconds() >= 300){
+        	game.iteration();
+        	horloge.restart();
         }
         window.display();
     }

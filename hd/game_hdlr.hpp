@@ -5,6 +5,7 @@ class Game_hdlr{
 	Snake *m_s;
 	sf::RenderWindow *m_w;
 	Dir dir_courante;
+	Dir dir_suivante;
 	bool ajout;
 	
 	public:

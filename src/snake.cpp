@@ -28,23 +28,20 @@ void Snake::affichage(sf::RenderWindow* w){
 
 bool Snake::moove(Dir direction, bool ajout = false){
 	//On retient la position qu'aura le nouveau
-	int posx, posy;
+	int posx = file[file.size()-1].getPosition().x;
+	int posy = file[file.size()-1].getPosition().y;
 	switch(direction){
 		case RIGHT:
-			posy = file[file.size()-1].getPosition().y;
-			posx = file[file.size()-1].getPosition().x + PART_SZ;
+			posx += PART_SZ;
 		break;
 		case LEFT:
-			posy = file[file.size()-1].getPosition().y;
-			posx = file[file.size()-1].getPosition().x - PART_SZ;
+			posx -= PART_SZ;
 		break;
 		case UP:
-			posy = file[file.size()-1].getPosition().y - PART_SZ;
-			posx = file[file.size()-1].getPosition().x;
+			posy -= PART_SZ;
 		break;
 		case DOWN:
-			posy = file[file.size()-1].getPosition().y + PART_SZ;
-			posx = file[file.size()-1].getPosition().x;
+			posy += PART_SZ;
 		break;
 	}
 	

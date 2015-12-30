@@ -13,11 +13,12 @@ class Game_hdlr{
 	
 	public:
 	
-	Game_hdlr(Snake* s, sf::RenderWindow *w);
+	Game_hdlr(sf::RenderWindow *w);
 	~Game_hdlr();
 	bool iteration();
 	void chgt_dir(Dir direction);
 	void affichage();
+	void init();
 	
 	private:
 	void generer_food();

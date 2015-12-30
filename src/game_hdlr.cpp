@@ -2,19 +2,14 @@
 #include "../hd/constantes.hpp"
 #include <iostream>
 
-Game_hdlr::Game_hdlr(Snake *s, sf::RenderWindow* w){
-	m_s = s;
+Game_hdlr::Game_hdlr(sf::RenderWindow* w){
 	m_w = w;
-	dir_courante = RIGHT;
-	dir_suivante = RIGHT;
-	food = new sf::RectangleShape(sf::Vector2f(PART_SZ, PART_SZ));
-	generer_food();
-	food->setFillColor(sf::Color::Red);
-	affichage();
+	init();
 }
 
 Game_hdlr::~Game_hdlr(){
 	delete food;
+	delete m_s;
 }
 
 bool Game_hdlr::iteration(){
@@ -46,6 +41,20 @@ void Game_hdlr::generer_food(){
 		y = (rand()%(WIND_SZ/PART_SZ))*PART_SZ;
 	}while(!m_s->check_position(x,y));
 	food->setPosition(x,y);
+}
+
+void Game_hdlr::init(){
+	dir_courante = RIGHT;
+	dir_suivante = RIGHT;
+	if(food == 0)
+		delete food;
+	if(m_s == 0)
+		delete m_s;
+	m_s = new Snake(50, 50);
+	food = new sf::RectangleShape(sf::Vector2f(PART_SZ, PART_SZ));
+	generer_food();
+	food->setFillColor(sf::Color::Red);
+	affichage();
 }
 
 void Game_hdlr::chgt_dir(Dir direction){

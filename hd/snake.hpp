@@ -6,6 +6,8 @@ enum Dir {LEFT, RIGHT, UP, DOWN};
 
 class Snake{
 
+friend class Game_hdlr;
+
 	std::deque<sf::RectangleShape> file;
 	
 public:
@@ -13,5 +15,7 @@ public:
 	Snake(int x, int y);
 	void affichage(sf::RenderWindow* w);
 	Retour moove(Dir direction, int fd_x, int fd_y);
-	bool check_food(int x, int y);
+
+private:
+	bool check_position(int x, int y);
 };

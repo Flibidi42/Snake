@@ -46,7 +46,7 @@ Retour Snake::moove(Dir direction, int fd_x, int fd_y){
 	}
 	
 	//On teste s'il sort de l'écran
-	if(posx >= WIND_SZ || posy >= WIND_SZ || posx < 0 || posy < 0)
+	if(posx >= WIND_SZ || posy >= WIND_SZ || posx < 0 || posy < 0 || !check_position(posx, posy))
 		return FIN;
 		
 	bool ajout = (posx == fd_x && posy == fd_y);
@@ -67,7 +67,7 @@ Retour Snake::moove(Dir direction, int fd_x, int fd_y){
 		return FOOD;
 }
 
-bool Snake::check_food(int x, int y){
+bool Snake::check_position(int x, int y){
 	bool retour = true;
 	std::deque<sf::RectangleShape>::iterator it;
 	for(it = file.begin(); it!= file.end(); it++)

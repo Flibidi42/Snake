@@ -44,9 +44,8 @@ void Game_hdlr::generer_food(){
 	do{
 		x = (rand()%(WIND_SZ/PART_SZ))*PART_SZ;
 		y = (rand()%(WIND_SZ/PART_SZ))*PART_SZ;
-	}while(!m_s->check_food(x,y));
+	}while(!m_s->check_position(x,y));
 	food->setPosition(x,y);
-	std::cout << x << "/" << y << std::endl;
 }
 
 void Game_hdlr::chgt_dir(Dir direction){

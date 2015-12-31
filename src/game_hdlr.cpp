@@ -4,12 +4,25 @@
 
 Game_hdlr::Game_hdlr(sf::RenderWindow* w){
 	m_w = w;
+	text_bg = new sf::Texture();
+	bg = new sf::Sprite ();
+	bg->setPosition(0,0);
+	if(!text_bg->loadFromFile("img/herbe.jpg")){
+		std::cout << "Erreur de chargement des textures (bg)" << std::endl;
+		bg->setColor(sf::Color::Black);
+	}
+	else{
+		bg->setTexture(*text_bg);
+	}
+	bg->setTextureRect(sf::IntRect(0, 0, WIND_SZ, WIND_SZ));
 	init();
 }
 
 Game_hdlr::~Game_hdlr(){
 	delete food;
 	delete m_s;
+	delete bg;
+	delete text_bg;
 }
 
 bool Game_hdlr::iteration(){
@@ -30,6 +43,7 @@ bool Game_hdlr::iteration(){
 
 void Game_hdlr::affichage(){
 	m_w->clear(sf::Color::Black);
+	m_w->draw(*bg);
 	m_w->draw(*food);
 	m_s->affichage(m_w);
 }

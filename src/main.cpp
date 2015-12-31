@@ -58,7 +58,7 @@ int main()
          		break;
             }
         }
-        if(horloge.getElapsedTime().asMilliseconds() >= 300 && go && restart){
+        if(horloge.getElapsedTime().asMilliseconds() >= 200 && go && restart){
         	if(!game.iteration()){
         		restart = false;
         		window.clear(sf::Color::Black);

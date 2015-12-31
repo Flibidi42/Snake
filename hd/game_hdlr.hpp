@@ -10,6 +10,8 @@ class Game_hdlr{
 	Dir dir_courante;
 	Dir dir_suivante;
 	sf::RectangleShape *food;
+	sf::Texture *text_bg;
+	sf::Sprite* bg;
 	
 	public:
 	

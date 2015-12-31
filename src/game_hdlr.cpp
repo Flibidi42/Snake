@@ -50,7 +50,7 @@ void Game_hdlr::init(){
 		delete food;
 	if(m_s == 0)
 		delete m_s;
-	m_s = new Snake(50, 50);
+	m_s = new Snake((rand()%(WIND_SZ/PART_SZ))*PART_SZ, (rand()%(WIND_SZ/PART_SZ))*PART_SZ);
 	food = new sf::RectangleShape(sf::Vector2f(PART_SZ, PART_SZ));
 	generer_food();
 	food->setFillColor(sf::Color::Red);

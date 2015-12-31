@@ -11,12 +11,8 @@ Snake::Snake(int x, int y){
 	sf::RectangleShape rec2(sf::Vector2f(PART_SZ, PART_SZ));
 	rec2.setPosition(x, y);
 	rec2.setFillColor(sf::Color(100, 250, 50));
-	sf::RectangleShape rec3(sf::Vector2f(PART_SZ, PART_SZ));
-	rec3.setPosition(x, y);
-	rec3.setFillColor(sf::Color(100, 250, 50));
 	file.push_back(rec);
 	file.push_back(rec2);
-	file.push_back(rec3);
 }
 
 void Snake::affichage(sf::RenderWindow* w){

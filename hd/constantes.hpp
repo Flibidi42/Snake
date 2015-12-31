@@ -1,2 +1,2 @@
-#define PART_SZ 10
-#define WIND_SZ 300
+#define PART_SZ 30
+#define WIND_SZ 600

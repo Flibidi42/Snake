@@ -6,15 +6,15 @@
 int main()
 {
     sf::Font font;
-    if(!font.loadFromFile("calibri.ttf"))
+    if(!font.loadFromFile("FreeSerif.ttf"))
     	std::cout << "probleme" << std::endl;
     sf::Text text;
     text.setFont(font); // font est un sf::Font
     text.setString("Perdu!");
-    text.setCharacterSize(24); // exprimée en pixels, pas en points !
+    text.setCharacterSize(35);
     text.setColor(sf::Color::Blue);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(sf::Vector2f((WIND_SZ/2) - text.getScale().x, (WIND_SZ/2) - text.getScale().y));
+    text.setPosition(sf::Vector2f(WIND_SZ/3, WIND_SZ/3));
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(WIND_SZ, WIND_SZ), "Snake");
     Game_hdlr game(&window);
@@ -59,10 +59,10 @@ int main()
             }
         }
         if(horloge.getElapsedTime().asMilliseconds() >= 300 && go && restart){
-        	if(!game.iteration() && restart){
+        	if(!game.iteration()){
         		restart = false;
         		window.clear(sf::Color::Black);
-        		window.draw(text);
+    			window.draw(text);
         	}
         	horloge.restart();
         }

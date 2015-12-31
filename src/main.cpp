@@ -14,7 +14,7 @@ int main()
     text.setCharacterSize(35);
     text.setColor(sf::Color::Blue);
     text.setStyle(sf::Text::Bold);
-    text.setPosition(sf::Vector2f(WIND_SZ/3, WIND_SZ/3));
+    text.setPosition(sf::Vector2f(WIND_SZ/2-17, WIND_SZ/2-40));
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(WIND_SZ, WIND_SZ), "Snake");
     Game_hdlr game(&window);

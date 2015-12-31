@@ -44,7 +44,7 @@ void Game_hdlr::generer_food(){
 }
 
 void Game_hdlr::init(){
-	dir_courante = RIGHT;
+	dir_courante = NONE;
 	dir_suivante = RIGHT;
 	if(food == 0)
 		delete food;
@@ -75,6 +75,9 @@ void Game_hdlr::chgt_dir(Dir direction){
 		case DOWN:
 			if(direction != UP)
 				dir_suivante = direction;
+			break;
+		case NONE:
+			dir_suivante = direction;
 			break;
 	}
 }

@@ -5,25 +5,39 @@
 
 
 Snake::Snake(int x, int y){
-	sf::RectangleShape rec (sf::Vector2f(PART_SZ, PART_SZ));
-	rec.setPosition(x, y);
-	rec.setFillColor(sf::Color(100, 250, 50));
-	sf::RectangleShape rec2(sf::Vector2f(PART_SZ, PART_SZ));
-	rec2.setPosition(x, y);
-	rec2.setFillColor(sf::Color(100, 250, 50));
-	file.push_back(rec);
-	file.push_back(rec2);
+	snake_text = new sf::Texture();
+	sf::Sprite s1;
+	s1.setPosition(x, y);
+	sf::Sprite s2;
+	s2.setPosition(x, y);
+	if(!snake_text->loadFromFile("img/image_snake.jpg")){
+		std::cout << "Erreur de chargement des textures (snake)" << std::endl;
+		s1.setColor(sf::Color(100, 250, 50));
+		s2.setColor(sf::Color(100, 250, 50));
+	}
+	else{
+		s1.setTexture(*snake_text);
+		s2.setTexture(*snake_text);
+	}
+	s1.setTextureRect(sf::IntRect(10, 10, PART_SZ, PART_SZ));
+	s2.setTextureRect(sf::IntRect(10, 10, PART_SZ, PART_SZ));
+	file.push_back(s1);
+	file.push_back(s2);
+}
+
+Snake::~Snake(){
+	delete snake_text;
 }
 
 void Snake::affichage(sf::RenderWindow* w){
-	std::deque<sf::RectangleShape>::iterator it;
+	std::deque<sf::Sprite>::iterator it;
 	for(it = file.begin(); it!= file.end(); it++)
 		w->draw(*it);
 }
 
 Retour Snake::moove(Dir direction, int fd_x, int fd_y){
 	//On retient la position qu'aura le nouveau
-	sf::RectangleShape rec;
+	sf::Sprite s;
 	int posx = file[file.size()-1].getPosition().x;
 	int posy = file[file.size()-1].getPosition().y;
 	switch(direction){
@@ -48,15 +62,15 @@ Retour Snake::moove(Dir direction, int fd_x, int fd_y){
 	bool ajout = (posx == fd_x && posy == fd_y);
 	//Le premier devient le dernier
 	if(!ajout){
-		rec = file[0];
+		s = file[0];
 		file.pop_front();
 	}
 	else{
-		rec.setSize(sf::Vector2f(PART_SZ, PART_SZ));
-		rec.setFillColor(sf::Color(100, 250, 50));
+		s.setTexture(*snake_text);
+		s.setTextureRect(sf::IntRect(10, 10, PART_SZ, PART_SZ));
 	}
-	rec.setPosition(posx, posy);
-	file.push_back(rec);
+	s.setPosition(sf::Vector2f(posx, posy));
+	file.push_back(s);
 	if(!ajout)
 		return OK;
 	else
@@ -65,7 +79,7 @@ Retour Snake::moove(Dir direction, int fd_x, int fd_y){
 
 bool Snake::check_position(int x, int y){
 	bool retour = true;
-	std::deque<sf::RectangleShape>::iterator it;
+	std::deque<sf::Sprite>::iterator it;
 	for(it = file.begin(); it!= file.end(); it++)
 		retour &= (it->getPosition().x != x || it->getPosition().y != y);
 	return retour;

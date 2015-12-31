@@ -1,6 +1,7 @@
 #include "../hd/game_hdlr.hpp"
 #include "../hd/constantes.hpp"
 #include <iostream>
+#include <string>
 
 Game_hdlr::Game_hdlr(sf::RenderWindow* w){
 	m_w = w;
@@ -15,6 +16,14 @@ Game_hdlr::Game_hdlr(sf::RenderWindow* w){
 		bg->setTexture(*text_bg);
 	}
 	bg->setTextureRect(sf::IntRect(0, 0, WIND_SZ, WIND_SZ));
+	font = new sf::Font;
+	if(!font->loadFromFile("FreeSerif.ttf"))
+		std::cout << "probleme de police" << std::endl;
+    	score = new sf::Text;
+        score->setFont(*font); // font est un sf::Font
+        score->setCharacterSize(25);
+        score->setColor(sf::Color::Black);
+        score->setPosition(sf::Vector2f(0, 0));
 	init();
 }
 
@@ -34,6 +43,8 @@ bool Game_hdlr::iteration(){
 	}
 	else if(val == FOOD){
 		generer_food();
+		score_nb ++;
+		score->setString("Score :" + std::to_string(score_nb));
 		affichage();
 	}
 	else
@@ -44,6 +55,7 @@ bool Game_hdlr::iteration(){
 void Game_hdlr::affichage(){
 	m_w->clear(sf::Color::Black);
 	m_w->draw(*bg);
+	m_w->draw(*score);
 	m_w->draw(*food);
 	m_s->affichage(m_w);
 }
@@ -59,6 +71,7 @@ void Game_hdlr::generer_food(){
 
 void Game_hdlr::init(){
 	dir_courante = NONE;
+	score_nb = 0;
 	dir_suivante = RIGHT;
 	if(food == 0)
 		delete food;
@@ -66,6 +79,7 @@ void Game_hdlr::init(){
 		delete m_s;
 	m_s = new Snake((rand()%(WIND_SZ/PART_SZ))*PART_SZ, (rand()%(WIND_SZ/PART_SZ))*PART_SZ);
 	food = new sf::RectangleShape(sf::Vector2f(PART_SZ, PART_SZ));
+	score->setString("Score :" + std::to_string(score_nb));
 	generer_food();
 	food->setFillColor(sf::Color::Red);
 	affichage();

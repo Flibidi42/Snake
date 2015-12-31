@@ -12,6 +12,9 @@ class Game_hdlr{
 	sf::RectangleShape *food;
 	sf::Texture *text_bg;
 	sf::Sprite* bg;
+	sf::Font* font;
+	sf::Text* score;
+	int score_nb;
 	
 	public:
 	
